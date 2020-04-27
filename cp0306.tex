@@ -1,0 +1,66 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+
+Let $a_n$ be the $n$-th term of a sequence for any positive integer $n$. If $a_1 = 1$ and $$a_{n+1} = a_n + \frac{1}{a_n}$$ Which of the following must be true?
+\begin{itemize}
+	\item[I.] $a_1$, $a_2$, $a_3$\ldots form an arithmetic sequence
+	\item[II.] $a_4 = \dfrac{29}{10}$
+	\item[III.] $a_{2020}^{2} - a_{2019}^{2}  = \dfrac{1}{a_{2019}^{2}} + \dfrac{1}{2}$
+\end{itemize} 
+
+\begin{choices}
+\choice I only
+\choice II only%
+\choice I and III only
+\choice II and III only
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+An arithmetic sequence is of the form $a$, $a+d$, $a+2d$\ldots
+\begin{equation*}
+\begin{aligned}
+a_1 &= 1 \\
+a_2 &= 1 + \frac{1}{1} \\
+	&= 2 \\
+a_3 &= 2 + \frac{1}{2} \\
+	&= \frac{5}{2}
+\end{aligned}
+\end{equation*}
+$a_2 - a_1 = 2 - 1 = 1$ and $a_3 - a_2 = \frac{5}{2} - 2 = \frac{1}{2}$
+
+$\therefore$ I is false
+
+\begin{equation*}
+\begin{aligned}
+a_4 &= a_3 + \frac{1}{a_3} \\
+	&= \frac{5}{2} + \frac{2}{5} \\
+	&= \frac{29}{10}
+\end{aligned}
+\end{equation*}
+$\therefore$ II is true
+
+\begin{equation*}
+\begin{aligned}
+a_{n+1} &= a_n + \frac{1}{a_n} \\
+a_{n+1}^2 &= \left(a_n + \frac{1}{a_n}\right)^2 \\
+a_{n+1}^2 &= a_n^2 + \frac{1}{a_n^2} + 2 \\
+a_{n+1}^2 - a_n^2 &= \frac{1}{a_n^2} + 2 \\
+\end{aligned}
+\end{equation*}
+For $n=2019$,
+\begin{equation*}
+\begin{aligned}
+a_{2020}^2 - a_{2019}^2 &= \frac{1}{a_{2019}^2} + 2 \\
+\end{aligned}
+\end{equation*}
+$\therefore$ III is false
+\end{answer}
+\end{document}

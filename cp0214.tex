@@ -1,0 +1,91 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import graph;
+
+real f(real x) {return (2-sin(x))^2 + 1;}
+pair F(real x) {return (f(x), x);}
+
+draw(graph(F, -2*pi, 2*pi, operator ..), black);
+draw(Label("$x$", EndPoint), (-1,0)--(12,0), Arrow(1mm));
+draw(Label("$y$", EndPoint), (0,-2*pi)--(0,2*pi), Arrow(1mm));
+
+\end{asy}
+\end{center}
+
+The figure shows the graph of $\sin y = 2-\sqrt{x-1}$. Which of the following must be true?
+\begin{itemize}
+	\item[I.] the graph is bound by the lines $x=2$ and $x=10$
+	\item[II.] the graph intersects the $x$-axis at $(5, 0)$
+	\item[III.] $y=1$ is an axis of symmetry
+\end{itemize} 
+
+\begin{choices}
+\choice I and II only%
+\choice I and III only
+\choice II and III only
+\choice I, II and III
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+$\because -1 \le \sin y \le 1$
+\begin{equation*}
+\therefore\begin{cases}
+2-\sqrt{x-1} = 1 \\
+2-\sqrt{x-1} = -1 
+\end{cases}
+\end{equation*}
+\begin{equation*}
+\begin{cases}
+\sqrt{x-1} = 1 \\
+\sqrt{x-1} = 3
+\end{cases}
+\end{equation*}
+\begin{equation*}
+\begin{cases}
+x = 2 \\
+x = 10
+\end{cases}
+\end{equation*}
+The minimum and maximum of the graph is $x=2$ and $x=10$ respectively, so it is bound by $x=2$ and $x=10$.
+
+$\therefore$ I is true
+
+If it intersects the $x$-axis, $y=0$
+\begin{equation*}
+\begin{aligned}
+\therefore \sin(0) &= 2-\sqrt{x-1} \\
+0 &= 2-\sqrt{x-1} \\
+x &= 5 
+\end{aligned}
+\end{equation*}
+$\therefore$ II is true
+
+Only horizontal lines cutting through the extrema of the graph will be axes of symmetry.
+\begin{equation*}
+\therefore\begin{cases}
+\sin y = 2-\sqrt{2-1} \\
+\sin y = 2-\sqrt{10-1} 
+\end{cases}
+\end{equation*}
+\begin{equation*}
+\begin{cases}
+\sin y = 1 \\
+\sin y = -1 
+\end{cases}
+\end{equation*}
+As $y=1$ does not satisfies the above equations, it is not an axis of symmetry.
+
+$\therefore$ III is false
+\end{answer}
+\end{document}

@@ -1,0 +1,85 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+
+real r = 1; real t = 30; real tdeg = 68;
+real d = r / (2*Cos(tdeg));
+
+circle cle = circle(origin, r);
+point A = rotate(t)*rotate(tdeg)*(r,0);
+point B = rotate(t)*(d, 0);
+
+point T = rotate(t)*rotate(-90)*(r, 0);
+point H1 = T+unit(B-origin);
+point C = intersectionpoint(line(T, H1), line(A, B));
+point H2 = rotate(140,T)*(T+unit(C-T));
+point[] K = intersectionpoints(line(T,H2), cle);
+
+draw(cle);
+draw(origin--A--B--cycle);
+draw(T--C);
+draw(B--C);
+draw(T--K[1]--A);
+
+label("$O$", origin, labelat(origin, new pair[] {A,B}));
+label("$A$", A, labelat(A, new pair[] {K[1],origin,C}));
+label("$B$", B, labelat(B, new pair[] {origin}));
+label("$T$", T, labelat(T, new pair[] {C,K[1]}));
+label("$C$", C, labelat(C, new pair[] {A,T}));
+label("$K$", K[1], labelat(K[1], new pair[] {A,T}));
+
+//label("$O$", origin, (unit(origin-A)+unit(origin-B))/2);
+//label("$A$", A, (unit(A-K[1])+unit(A-origin)+unit(A-C))/3);
+//label("$B$", B, unit(B-origin));
+//label("$T$", T, (unit(T-C)+unit(T-K[1]))/2);
+//label("$C$", C, (unit(C-A)+unit(C-T))/2);
+//label("$K$", K[1], (unit(K[1]-A)+unit(K[1]-T))/2);
+
+markangle("", T, K[1], A, radius=10);
+
+write(sharpdegrees(line(T,K[1]), line(A,K[1])));
+write(sharpdegrees(line(A,C), line(T,C)));
+
+\end{asy}
+\end{center}
+
+In the figure, a circle is centred at $O$ with radius $OA$. $C$ is a point outside the circle such that $CT$ is a tangent to the circle and $CA$ is a straight line. $B$ is a point on $CA$ such that $BO\parallel CT$ and $BO=BA$. If $\angle ACT=\ang{44}$, then $\angle AKT$ is
+
+\begin{choices}
+\choice \ang{67}.
+\choice \ang{68}.
+\choice \ang{76}.
+\choice \ang{79}.%
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+Since $BO\parallel CT$, $\angle ABO=\angle ACT=\ang{44}$. Since $BA=BO$, $\angle BOA = \angle BAO$, consider $\bigtriangleup ABO$,
+\begin{equation*}
+\begin{aligned}
+2\angle BOA + \angle ABO &= \ang{180} \\
+\angle BOA &= \frac{\ang{180}-\ang{44}}{2} \\
+\angle BOA &= \ang{68} \\
+\end{aligned}
+\end{equation*}
+
+Since $CT$ is a tangent to the circle, $\angle BOT=\ang{90}$ ($BO\parallel CT$).
+
+$\angle AOT=\angle BOA + \angle BOT = \ang{68}+\ang{90} = \ang{158}$.
+
+The angle subtended at the circumference is half the angle subtended at the centre by the same arc, so $\angle AKT = \angle AOT / 2 = \ang{158}/2 = \ang{79}$. 
+
+\end{answer}
+\end{document}

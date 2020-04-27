@@ -1,0 +1,38 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+
+When two dices are rolled together, what is the probability that the sum of the values from the dices is a prime number? 
+
+\begin{choices}
+\choice $\dfrac{7}{18}$
+\choice $\dfrac{5}{12}$%
+\choice $\dfrac{4}{9}$
+\choice $\dfrac{19}{36}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+The maximum value from the sum of two dices is 12, so the possible prime numbers are 2, 3, 5, 7, 11. 
+\begin{equation*}
+\begin{aligned}
+2 \quad &: \quad (1, 1) \\
+3 \quad &: \quad (1, 2), (2, 1) \\
+5 \quad &: \quad (1, 4), (2, 3), (3, 2), (4, 1) \\
+7 \quad &: \quad (1, 6), (2, 5), (3, 4), (4, 3), (5, 2), (6, 1) \\
+11 \quad &: \quad (5, 6), (6, 5) \\
+\end{aligned}
+\end{equation*}
+There are 15 possible combinations.
+\begin{equation*}
+\therefore \frac{15}{6\cdot 6} = \frac{15}{36} = \frac{5}{12}
+\end{equation*}
+
+\end{answer}
+\end{document}

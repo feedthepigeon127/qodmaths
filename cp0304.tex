@@ -1,0 +1,123 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real r = 10; real s = sqrt(r^2/3);
+point O = (0, 0); 
+point scc = (s, s);
+arc qC = arc(circle(O, r), 0, 90);
+point C = relpoint(qC, 0); point D = relpoint(qC, 1);
+arc sC = arc(circle(scc, s), 135, 315+1e-7); 
+point A = relpoint(sC, 0.25); point B = relpoint(sC, 0.75);
+point[] ps = intersectionpoints(qC, sC);
+
+draw(O--C);
+draw(O--D);
+draw(qC);
+draw(ps[0]--ps[1]);
+draw(sC);
+draw(A--B);
+
+perpendicularmark(segment(O,C), segment(O,D), size=2mm, quarter=1);
+
+dot("$O$", O, SW);
+dot("$O'$", scc, NE);
+dot("$A$", A, W);
+dot("$B$", B, S);
+//dot("", ps[0]);
+//dot("", ps[1]);
+
+\end{asy}
+\end{center}
+
+The figure shows a quarter of a circle centred at $O$ and a semicircle centred at $O'$ is inscribed in it. The semicircle touches the quarter of the circle at $A$ and $B$. What is the ratio of the area of $\bigtriangleup OAB$ to the quarter of the circle?
+
+\begin{choices}
+\choice $\dfrac{2}{3\pi}$%
+\choice $\dfrac{1}{2\pi}$
+\choice $\dfrac{3}{5\pi}$
+\choice $\dfrac{5}{7\pi}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real r = 10; real s = sqrt(r^2/3);
+point O = (0, 0); 
+point scc = (s, s);
+arc qC = arc(circle(O, r), 0, 90);
+point C = relpoint(qC, 0); point D = relpoint(qC, 1);
+arc sC = arc(circle(scc, s), 135, 315+1e-7); 
+point A = relpoint(sC, 0.25); point B = relpoint(sC, 0.75);
+point[] ps = intersectionpoints(qC, sC);
+
+draw(O--C);
+draw(O--D);
+draw(qC);
+draw(ps[0]--ps[1]);
+draw(sC);
+draw(A--B);
+draw(O--ps[1], dashed);
+draw(O--scc, dashed);
+draw(A--scc, dashed);
+draw(B--scc, dashed);
+
+perpendicularmark(segment(O,C), segment(O,D), size=2mm, quarter=1);
+perpendicularmark(segment(O,B), segment(scc,B), size=2mm, quarter=1);
+perpendicularmark(segment(O,A), segment(scc,A), size=2mm, quarter=4);
+perpendicularmark(segment(O,scc), segment(scc,D), size=2mm, quarter=3);
+
+dot("$O$", O, SW);
+dot("$O'$", scc, NE);
+dot("$A$", A, W);
+dot("$B$", B, S);
+//dot("$E$", ps[0]);
+dot("$D$", ps[1], E);
+
+\end{asy}
+\end{center}
+
+Let the radius of the quarter of the circle be $r$ and the radius of the semicircle be $s$. Since $OA$ and $OB$ are the tangents to the semicircle, $OAO'B$ is a square.
+
+Consider $\bigtriangleup OBO'$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+OB^2 + O'B^2 &= OO'^2 \\
+O'A^2 + O'B^2 &= OO'^2 \\
+s^2 + s^2 &= OO'^2 \\
+OO' &= \sqrt{2}s
+\end{aligned}
+\end{equation*}
+Consider $\bigtriangleup ODO'$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+OO'^2 + O'D^2 &= OD^2 \\
+2s^2 + s^2 &= r^2 \\
+\frac{s^2}{r^2} &= \frac{1}{3}
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\therefore &\quad \frac{\text{area of}\bigtriangleup OAB}{\text{area of the quarter of the circle}} \\
+&= \frac{\frac{1}{2}OA\times OB}{\frac{1}{4}\pi r^2} \\
+&= \frac{\frac{1}{2}O'B\times O'A}{\frac{1}{4}\pi r^2} \\
+&= \frac{\frac{1}{2}s^2}{\frac{1}{4}\pi r^2} \\
+&= \frac{2s^2}{\pi r^2} \\
+&= \frac{2}{3\pi} \\
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}

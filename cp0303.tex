@@ -1,0 +1,136 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+          
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real rdeg = 10; 
+real r = 10;
+real cdr = 3/4;
+real alpha = aCos(cdr/2);
+real lde = sqrt(4*r^2 + (cdr*r)^4/r^2 - 4*(cdr*r)^2);
+
+point C = rotate(rdeg)*(-r, 0); point D = rotate(rdeg)*(r, 0);
+point A = rotate(alpha+rdeg, C)*(C + cdr*r);
+point B = rotate(-alpha+rdeg, C)*(C + cdr*r);
+point E = rotate(2*alpha+rdeg, D)*(D + lde);
+
+circle cle = circle((point)(0, 0), r);
+segment CD = segment(C, D); segment AB = segment(A, B);
+segment CA = segment(C, A); segment AE = segment(A, E); segment ED = segment(E, D);
+
+draw(cle);
+draw(CD);
+draw(AB, StickIntervalMarker(i=2, n=1, black, size=1mm));
+draw(CA, StickIntervalMarker(i=1, n=2, black, size=1mm));
+draw(AE, StickIntervalMarker(i=1, n=2, black, size=1mm));
+draw(CA); draw(AE); draw(ED);
+
+dot("$C$", C, W);
+dot("$D$", D);
+dot("$A$", A, NW);
+dot("$B$", B, SW);
+dot("$E$", E, N);
+
+\end{asy}
+\end{center}
+
+In the figure, $A$, $B$, $C$, $D$ and $E$ are points on the circle with radius $r$. $AB$ is a chord of the circle and $CD$ is a perpendicular bisector of $AB$. $ACDE$ is a quadrilateral with $AC=AE=\frac{3}{4}r$. What is the length of the chord $DE$ in term of $r$?
+
+\begin{choices}
+\choice $\dfrac{11}{8}r$
+\choice $\dfrac{23}{16}r$%
+\choice $\dfrac{47}{32}r$
+\choice $\dfrac{7}{4}r$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real rdeg = 10; 
+real r = 10;
+real cdr = 3/4;
+real alpha = aCos(cdr/2);
+real lde = sqrt(4*r^2 + (cdr*r)^4/r^2 - 4*(cdr*r)^2);
+
+point C = rotate(rdeg)*(-r, 0); point D = rotate(rdeg)*(r, 0);
+point A = rotate(alpha+rdeg, C)*(C + cdr*r);
+point B = rotate(-alpha+rdeg, C)*(C + cdr*r);
+point E = rotate(2*alpha+rdeg, D)*(D + lde);
+
+circle cle = circle((point)(0, 0), r);
+segment CD = segment(C, D); segment AB = segment(A, B);
+segment CA = segment(C, A); segment AE = segment(A, E); segment ED = segment(E, D);
+
+draw(cle);
+draw(CD);
+draw(AB, StickIntervalMarker(i=2, n=1, black, size=1mm));
+draw(CA, StickIntervalMarker(i=1, n=2, black, size=1mm));
+draw(AE, StickIntervalMarker(i=1, n=2, black, size=1mm));
+draw(CA); draw(AE); draw(ED);
+draw(A--D, dashed); draw(C--E, dashed);
+
+dot("$C$", C, W);
+dot("$D$", D);
+dot("$A$", A, NW);
+dot("$B$", B, SW);
+dot("$E$", E, N);
+perpendicularmark(segment(A,D), CA, size=5, quarter=4);
+perpendicularmark(segment(C,E), ED, size=5, quarter=3);
+
+\end{asy}
+\end{center}
+
+Consider $\bigtriangleup CDE$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+DE^2 + CE^2 &= CD^2
+\end{aligned}
+\end{equation*}
+As $CD$ is a perpendicular bisector of a chord, it must pass through the centre of the circle. Since $C$ and $D$ are also points on the circle, $CD$ is the diameter of the circle and $CD=2r$. Note that $CE=AB$, as they have the same subtended angle at the centre.
+\begin{equation*}
+\begin{aligned}
+\therefore DE^2 &= CD^2 - CE^2 \\
+     &= (2r)^2 - AB^2
+\end{aligned}
+\end{equation*}
+Consider the area of $\bigtriangleup ACD$,
+\begin{equation*}
+\begin{aligned}
+\frac{1}{2}\times AC\times AD &= \frac{1}{2}\times CD\times\frac{AB}{2} \\
+\frac{3}{4}r\cdot AD &= 2r\cdot \frac{AB}{2} \\
+AB &= \frac{3}{4}AD
+\end{aligned}
+\end{equation*}
+Consider $\bigtriangleup ACD$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+AD^2 + AC^2 &= CD^2 \\
+AD^2 &= CD^2 - AC^2 \\
+AD^2 &= 4r^2 - \frac{9}{16}r^2 \\
+	 &= \frac{55}{16}r^2
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\therefore DE^2 &= 4r^2 - AB^2 \\
+     &= 4r^2 - \frac{9}{16}AD^2 \\
+     &= 4r^2 - \frac{9}{16}\cdot\frac{55}{16}r^2 \\
+     &= \frac{529}{256}r^2 \\
+\end{aligned}
+\end{equation*}
+$$\therefore\quad DE = \frac{23}{16}r$$
+\end{answer}
+\end{document}

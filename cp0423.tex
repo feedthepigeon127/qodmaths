@@ -1,0 +1,71 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+
+real l = 2; real alpha1 = 94; real alpha2 = 32; real alpha3 = 180-alpha1-alpha2;
+
+point A = (0, 0);
+point B = A + (-l, 0);
+point C = A + rotate(alpha3)*(l,0);
+point D = A + rotate(-alpha1)*(l,0);
+point E = intersectionpoint(line(A,C), line(0, D.y));
+
+
+draw(A--B--C--cycle);
+draw(A--D);
+draw(D--C);
+draw(A--E);
+draw(D--E);
+
+label("$A$", A, (unit(A-D)+unit(A-E)+unit(B-A))/3);
+label("$B$", B, (unit(B-A)+unit(B-C))/2);
+label("$C$", C, (unit(C-A)+unit(C-B)+unit(C-D))/3);
+label("$D$", D, (unit(D-A)+unit(D-C)+unit(D-E))/3);
+label("$E$", E, (unit(E-A)+unit(E-D))/2);
+
+markangle("", A, B, C);
+
+//write(sharpdegrees(line(A,B), line(C,B)));
+//write(sharpdegrees(line(A,E), line(A,D)));
+//write(degrees(line(D,C), line(D,E)));
+
+\end{asy}
+\end{center}
+
+In the figure, $\bigtriangleup ABC$ and $\bigtriangleup ADC$ share the side $AC$ with $AC=AB=AD$. $CAE$ is a straight line and $AB\parallel DE$. If $\angle DAE=\ang{32}$ and $\angle CDE=\ang{110}$, find $\angle ABC$.
+
+\begin{choices}
+\choice \ang{19}
+\choice \ang{27}%
+\choice \ang{29}
+\choice \ang{35}
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+Since $AC=AD$, $\angle ADC = \angle ACD$ and $ \angle ADC + \angle ACD = \ang{32}$, $\angle ADC = \angle ACD = \ang{16}$. 
+
+$\angle AED = \angle EAB$ ($\because AB\parallel DE$), and $\angle EAB = \angle ABC + \angle ACB$. Since $AB=AC$, $\angle AED = \angle EAB = 2\angle ABC$.  
+
+Consider $\bigtriangleup CED$,
+\begin{equation*}
+\begin{aligned}
+\angle AED + \angle ACD + \angle CDE &= \ang{180} \\
+2\angle ABC + \ang{16} + \ang{110} &= \ang{180} \\
+\angle ABC &= \ang{27} \\
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

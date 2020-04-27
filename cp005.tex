@@ -1,0 +1,106 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+%\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+
+real p = 10; real q = 15; real ABF = 40;
+
+point B = (0, 0);
+point C = B + (p+q, 0);
+point F = B + (p, 0);
+point A = B + (p/2, 2*ABF/p);
+point D = A + (p+q, 0);
+point G = A + (p, 0);
+point E = B + (p/2, -2*ABF/p);
+point X = intersectionpoint(segment(A,C), segment(F,G));
+
+
+draw(A--B--C--D--cycle);
+draw(A--F);
+draw(A--C);
+draw(E--B);
+draw(E--F);
+draw(F--G);
+
+label("$A$", A, (unit(A-B)+unit(A-F)+unit(A-C)+unit(A-D))/4);
+label("$B$", B, (unit(B-A)+unit(B-C)+unit(B-E))/3);
+label("$C$", C, (unit(C-A)+unit(C-B)+unit(C-D))/3);
+label("$D$", D, (unit(D-A)+unit(D-C))/2);
+label("$E$", E, (unit(E-B)+unit(E-F))/2);
+label("$F$", F, unit(F-A));
+label("$G$", G, unit(G-X));
+label("$X$", X, (unit(X-A)+unit(X-G))/2);
+
+
+\end{asy}
+\end{center}
+
+In the figure, $ABCD$ is a parallelogram and $ABEF$ is a rhombus. $EF$ produced meets $AD$ at the point $G$. $AC$ and $FG$ intersect at the point $X$. If $BF:FC=2:3$ and the area of the rhombus $ABEF$ is \SI{80}{\centi\meter\squared}, then the area of the quadrilateral $CDGX$ is 
+
+\begin{choices}
+\choice \SI{76}{\centi\meter\squared}.
+\choice \SI{84}{\centi\meter\squared}.%
+\choice \SI{92}{\centi\meter\squared}.
+\choice \SI{100}{\centi\meter\squared}.
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+$ABFG$ is a parallelogram because $AB\parallel EF\parallel FG$ and $AG\parallel BF$, so $BF=AG$.
+
+$AB=AF=EB=EF$ because $ABEF$ is a rhombus, so $\bigtriangleup ABF\cong\bigtriangleup FGA$. Therefore, area of $\bigtriangleup ABF = \bigtriangleup EBF = \bigtriangleup FGA = \SI{40}{\centi\meter\squared}$. 
+
+$\because\bigtriangleup AGX\sim\bigtriangleup CFX$,
+\begin{equation*}
+\begin{aligned}
+\frac{GX}{FX} &= \frac{AG}{CF} \\
+\therefore \frac{GX}{FX} &= \frac{2}{3} \\ 
+\end{aligned}
+\end{equation*}
+
+$\because\bigtriangleup AFX$ and $\bigtriangleup AGX$ share the same height,
+\begin{equation*}
+\begin{aligned}
+\frac{\bigtriangleup AGX}{\bigtriangleup AFX} &= \frac{GX}{FX} \\
+\therefore\frac{\bigtriangleup AGX}{\bigtriangleup AFX} &= \frac{2}{3} \\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\because\bigtriangleup AFX + \bigtriangleup AGX &= \bigtriangleup FGA\\
+\therefore\frac{3}{2}\bigtriangleup AGX + \bigtriangleup AGX &= \SI{40}{\centi\meter\squared} \\
+\bigtriangleup AGX &= \SI{16}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+$\because\bigtriangleup ABF$ and $\bigtriangleup ABC$ share the same height,
+\begin{equation*}
+\begin{aligned}
+\frac{\bigtriangleup ABF}{\bigtriangleup ABC} &= \frac{BF}{BC} \\
+\frac{\bigtriangleup ABF}{\bigtriangleup ABC} &= \frac{2}{5} \\
+\therefore\bigtriangleup ABC &= \frac{5}{2}\bigtriangleup ABF \\
+							&= \SI{100}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\therefore CDGX &= \bigtriangleup ACD - \bigtriangleup AGX \\ 
+				 &= \bigtriangleup ABC - \bigtriangleup AGX \\
+				 &= 100 - 16 \\
+				 &= \SI{84}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

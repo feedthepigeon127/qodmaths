@@ -1,0 +1,104 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+settings.render=0;
+settings.prc=false;
+usepackage("siunitx");
+
+size(65mm);
+import geometry;
+import three;
+import myasy;
+
+currentprojection=orthographic((5,2,3));
+
+
+real a = 15;
+real b = 12;
+real c = 21;
+real h = 36;
+real m = 16;
+real iang = aCos((a^2+b^2-c^2)/(2*a*b));
+
+triple A = (0, 0, 0);
+triple B = (a, 0, 0);
+triple C = rotate(iang, Z)*(b, 0, 0);
+triple D = A + (0, 0, h);
+triple E = B + (0, 0, h);
+triple F = C + (0, 0, h);
+triple G = C + (0, 0, m);
+
+draw(Label("\SI{15}{\centi\meter}"), A--B);
+draw(Label("\SI{21}{\centi\meter}"), B--C);
+draw(Label("\SI{12}{\centi\meter}"), C--A);
+draw(D--E--F--cycle);
+draw(A--D, dashed);
+draw(B--E);
+draw(C--F);
+
+draw(A--G, dotted);
+draw(G--E, dotted);
+
+label("$A$", A, labelat(A, new triple[] {B,C}));
+label("$B$", B, labelat(B, new triple[] {A,C}));
+label("$C$", C, labelat(C, new triple[] {A,B}));
+label("$E$", D, labelat(D, new triple[] {E,F}));
+label("$F$", E, labelat(E, new triple[] {D,F}));
+label("$D$", F, labelat(F, new triple[] {D,E}));
+label("$G$", G, labelat(G, new triple[] {A,E}));
+
+//label("$A$", A, (unit(A-B)+unit(A-C))/2);
+//label("$B$", B, (unit(B-A)+unit(B-C))/2);
+//label("$C$", C, (unit(C-A)+unit(C-B))/2);
+//label("$E$", D, (unit(D-E)+unit(D-F))/2);
+//label("$F$", E, (unit(E-D)+unit(E-F))/2);
+//label("$D$", F, (unit(F-D)+unit(F-E))/2);
+//label("$G$", G, (unit(G-A)+unit(G-E))/2);
+
+\end{asy}
+\end{center}
+
+In the figure, $ABCDEF$ is a triangular prism. $G$ is point lying on $CD$ such that $CG=\SI{16}{\centi\meter}$ and $GD=\SI{20}{\centi\meter}$. Find $\angle AGF$ correct to the nearest degree.
+
+\begin{choices}
+\choice \ang{104}%
+\choice \ang{134}
+\choice \ang{150}
+\choice \ang{166}
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+\begin{equation*}
+\begin{aligned}
+AG^2 &= AC^2 + CG^2 \\
+AG   &= \sqrt{12^2+16^2} \\
+	 &= \SI{20}{\centi\meter} \\
+GF^2 &= GD^2 + DF^2 \\
+GF   &= \sqrt{20^2+21^2} \\
+	 &= \SI{29}{\centi\meter} \\
+AF^2 &= AB^2 + BF^2 \\
+AF   &= \sqrt{15^2+(16+20)^2} \\
+	 &= \SI{39}{\centi\meter} \\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\cos\angle AGF &= \frac{AG^2 + GF^2 - AF^2}{2\times AG\times GF} \\
+			   &= \frac{20^2 + 29^2 - 39^2}{2\times 20\times 29} \\	
+			   &= -\frac{7}{29} \\
+\angle AGF     &= \ang{103.97} \\
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

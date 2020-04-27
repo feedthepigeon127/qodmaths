@@ -1,0 +1,93 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+point O = (0, 0); real r = 10; real fd = 61; real sd = 90+fd;
+arc scle = arc(circle(O, r), 0, 180);
+point A = (r*Cos(fd), r*Sin(fd));
+point B = (r*(Cos(fd)-Sin(fd)), r*Sin(fd));
+point C = (r*(Cos(fd)-Sin(fd)), 0);
+point D = (r*Cos(fd), 0);
+point E = (r*Cos(sd), r*Sin(sd));
+point F = (r*Cos(sd), 0);
+point G = (r*(Cos(fd)-Sin(fd)), r*Sin(sd));
+
+draw(scle);
+draw(O--(r,0)); draw(O--(-r,0));
+draw(A--B--C--D--cycle);
+draw(E--F--C--G--cycle);
+
+dot("$O$", O, S);
+dot("$A$", A, NE);
+//dot("$B$", B, S);
+//dot("$C$", C, S);
+//dot("$D$", D, S);
+dot("$B$", E, NW);
+//dot("$F$", F, S);
+//dot("$G$", G, S);
+
+\end{asy}
+\end{center}
+In the figure, two squares are placed inside a semicircle with one corner from each square touching the semicircle at $A$ and $B$. The semicircle is centred at $O$. What is the ratio of the area of the semicircle to the area of the sum of two squares? 
+
+\begin{choices}
+\choice $\dfrac{7}{18}$
+\choice $\dfrac{5}{12}$%
+\choice $\dfrac{4}{9}$
+\choice $\dfrac{19}{36}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: }
+
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+point O = (0, 0); real r = 10; real fd = 61; real sd = 90+fd;
+arc scle = arc(circle(O, r), 0, 180);
+point A = (r*Cos(fd), r*Sin(fd));
+point B = (r*(Cos(fd)-Sin(fd)), r*Sin(fd));
+point C = (r*(Cos(fd)-Sin(fd)), 0);
+point D = (r*Cos(fd), 0);
+point E = (r*Cos(sd), r*Sin(sd));
+point F = (r*Cos(sd), 0);
+point G = (r*(Cos(fd)-Sin(fd)), r*Sin(sd));
+
+draw(scle);
+draw(O--(r,0)); draw(O--(-r,0));
+draw(A--B--C--D--cycle);
+draw(E--F--C--G--cycle);
+draw(O--A, dashed); draw(O--E, dashed);
+draw(C--E, dashed); draw(C--A, dashed);
+draw(A--E, dashed);
+
+perpendicularmark(segment(E,C), segment(A,C), size=2mm, quarter=2);
+perpendicularmark(segment(A,O), segment(E,O), size=2mm, quarter=3);
+
+dot("$O$", O, S);
+dot("$A$", A, NE);
+//dot("$B$", B, S);
+dot("$C$", C, S);
+//dot("$D$", D, S);
+dot("$B$", E, NW);
+//dot("$F$", F, S);
+//dot("$G$", G, S);
+
+\end{asy}
+\end{center}
+
+
+
+\end{answer}
+\end{document}

@@ -1,0 +1,97 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+If $2y^3 = 3x^2$, which of the following plot represents $\log_{3}y$ vs $\log_{3}x$ (for $x>0$)?
+
+\begin{choices}
+\choice \text{}\\
+\begin{asy}
+size(40mm);
+import graph;
+defaultpen(fontsize(5pt));
+
+real f(real x) {return -2*x/3 + 0.12302;}
+pair F(real x) {return (x, f(x));}
+
+draw(graph(F, -0.2, 0.3, operator ..), black);
+draw(Label("$\log_{3}x$", EndPoint), (-0.3,0)--(0.3,0), Arrow(1mm));
+draw(Label("$\log_{3}y$", EndPoint), (0,-0.2)--(0,0.2), Arrow(1mm));
+
+draw(Label("$0.1$", BeginPoint), (-0.01, 0.1)--(0.01, 0.1));
+draw(Label("$-0.1$", BeginPoint), (0.1, -0.01)--(0.1, 0.01));
+\end{asy}
+
+\choice \text{}\\
+\begin{asy}
+size(40mm);
+import graph;
+defaultpen(fontsize(5pt));
+
+real f(real x) {return 2*x/3 + 0.07698;}
+pair F(real x) {return (x, f(x));}
+
+draw(graph(F, -0.3, 0.2, operator ..), black);
+draw(Label("$\log_{3}x$", EndPoint), (-0.3,0)--(0.3,0), Arrow(1mm));
+draw(Label("$\log_{3}y$", EndPoint), (0,-0.2)--(0,0.2), Arrow(1mm));
+
+draw(Label("$0.1$", BeginPoint), (-0.01, 0.1)--(0.01, 0.1));
+draw(Label("$-0.1$", BeginPoint), (-0.1, -0.01)--(-0.1, 0.01));
+\end{asy}
+
+\choice \text{}\\
+\begin{asy}
+size(40mm);
+import graph;
+defaultpen(fontsize(5pt));
+
+real f(real x) {return -2*x/3 + 0.07698;}
+pair F(real x) {return (x, f(x));}
+
+draw(graph(F, -0.2, 0.3, operator ..), black);
+draw(Label("$\log_{3}x$", EndPoint), (-0.3,0)--(0.3,0), Arrow(1mm));
+draw(Label("$\log_{3}y$", EndPoint), (0,-0.2)--(0,0.2), Arrow(1mm));
+
+draw(Label("$0.1$", EndPoint), (-0.01, 0.1)--(0.01, 0.1));
+draw(Label("$-0.1$", BeginPoint), (0.1, -0.01)--(0.1, 0.01));
+\end{asy}
+
+ 
+\choice \text{}\\ 
+\begin{asy}
+size(40mm);
+import graph;
+defaultpen(fontsize(5pt));
+
+real f(real x) {return 2*x/3 + 0.12302;}
+pair F(real x) {return (x, f(x));}
+
+draw(graph(F, -0.3, 0.2, operator ..), black);
+draw(Label("$\log_{3}x$", EndPoint), (-0.3,0)--(0.3,0), Arrow(1mm));
+draw(Label("$\log_{3}y$", EndPoint), (0,-0.2)--(0,0.2), Arrow(1mm));
+
+draw(Label("$0.1$", EndPoint), (-0.01, 0.1)--(0.01, 0.1));
+draw(Label("$-0.1$", BeginPoint), (-0.1, -0.01)--(-0.1, 0.01));
+\end{asy} 
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+\begin{equation*}
+\begin{aligned}
+2y^3 &= 3x^2 \\
+\log_{3}(2y^3) &= \log_{3}(3x^2) \\
+\log_{3}2 + 3\log_{3}y &= 1 + 2\log_{3}x \\
+\log_{3}y &= \frac{2}{3}\log_{3}x + \frac{1-\log_{3}2}{3} \\
+\log_{3}y &= \frac{2}{3}\log_{3}x + 0.12302\\
+\end{aligned}
+\end{equation*}
+$\therefore$ $y$-intercept $> 0.1$ and slope is positive.
+
+\end{answer}
+\end{document}

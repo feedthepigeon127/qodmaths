@@ -1,0 +1,40 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+
+The three sides of a right-angled triangle form an arithmetic sequence with common difference of \num{7}. What is the area of the triangle? 
+
+\begin{choices}
+\choice \num{73.5}
+\choice \num{294}%
+\choice \num{367.5}
+\choice \num{490}
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+If the three sides form an arithmetic sequence with common difference of \num{7}, they are of the form $a-7$, $a$ and $a+7$. By Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+(a-7)^2 + a^2 &= (a+7)^2 \\
+a^2 - 14a + 49 + a^2 &= a^2 + 14a + 49 \\
+a^2 &= 28a \\
+a &= 28
+\end{aligned}
+\end{equation*}
+$\therefore$ the three sides are $28-7=21$, $28$ and $28+7=35$. The two shorter sides make a right angle,
+\begin{equation*}
+\begin{aligned}
+\therefore\text{area of the triangle} &= \frac{1}{2}\times 21\times28 \\
+&= 294
+\end{aligned}
+\end{equation*} 
+
+\end{answer}
+\end{document}

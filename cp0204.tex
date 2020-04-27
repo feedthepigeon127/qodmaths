@@ -1,0 +1,37 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+Given $$\log_{10}\left(\sin x+\cos x\right) = \frac{1}{2}\left(\log_{10}a-1\right)$$
+find $a$ if $\sin x\cos x=0.1$
+\begin{choices}
+\choice 1.2
+\choice 2.2
+\choice 11.2
+\choice 12
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+\begin{equation*}
+\begin{aligned}
+\log_{10}\left(\sin x+\cos x\right) &= \frac{1}{2}\left(\log_{10}a-1\right) \\
+2\log_{10}\left(\sin x+\cos x\right) &= \log_{10}a-1 \\
+\log_{10}\left(\sin x+\cos x\right)^2 &= \log_{10}a-\log_{10}10 \\
+\log_{10}\left(\sin x+\cos x\right)^2 &= \log_{10}\frac{a}{10} \\
+\left(\sin x+\cos x\right)^2 &= \frac{a}{10} \\
+1 + 2\sin x\cos x &= \frac{a}{10} \\
+1 + 2(0.1) &= \frac{a}{10} \\
+\frac{a}{10} &= 1.2 \\
+a &= 12
+\end{aligned}
+\end{equation*}
+\end{answer}
+
+\end{document}
+
+

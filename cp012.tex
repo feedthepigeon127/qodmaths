@@ -1,0 +1,95 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import graph;
+import myasy;
+
+real x1=2, x2=4;
+point O = (0,0);
+point A = (x1, 0);
+point B = (x2, 0);
+
+real f(real x) {return -(x-x1)*(x-x2);}
+pair F(real x) {return (x, f(x));}
+path g = graph(F, 1, 5, operator ..);
+
+point C = ((x1+x2)/2, ((x1+x2)^2-4*x1*x2)/4);
+real r = sqrt((x1 - C.x)^2 + C.y^2);
+circle cle = circle(C, r);
+
+line[] ts = tangents(cle, O);
+point tp = intersectionpoints(cle, ts[1])[0];
+
+
+draw(Label("$P: -x^2 + 6x - 8 = 0$", BeginPoint, RightSide), g);
+xlimits(-0.5, 5);
+ylimits(-3, 3);
+xaxis(Label("$x$", EndPoint, NE), YZero(extend=false), Arrow);
+yaxis(Label("$y$", EndPoint, NW), XZero(extend=false), Arrow);
+
+xtickmark(x1, size=0.1);
+xtickmark(x2, size=0.1);
+
+draw(cle);
+draw(O--tp);
+
+label("$O$", O, SW);
+label("$A$", A, 2S);
+label("$B$", B, 2S);
+label("$C$", C, N);
+label("$T$", tp, NW);
+
+
+write(distance2d(O,tp));
+write(distance2d(C,tp));
+//write(sharpdegrees(line(C,E), line(E,D)));
+
+\end{asy}
+\end{center}
+
+In the figure, a parabola and a circle both cut the $x$-axis at point $A$ and $B$. The circle is centred at point $C$, which is the maxima of the parabola. $OT$ is a tangent to the circle from the origin. What is the value of the length of $OT$?  
+
+\begin{choices}
+\choice $2$
+\choice $2\sqrt{2}$%
+\choice $3$
+\choice $2\sqrt{3}$
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+The equation of the parabola is 
+\begin{equation*}
+\begin{aligned}
+-x^2 + 6x - 8 &= 0 \\
+-(x-2)(x-4) &= 0 \\
+x = 2 &\text{ or } x = 4 \\
+\end{aligned}
+\end{equation*}
+$A=(2,0)$ and $B=(4,0)$. Completing the square, $$-(x-3)^2 + 1$$
+
+$C$ is $(3,1)$. The radius of the circle $r$ is $$r = \sqrt{(3-2)^2+(1-0)^2}=\sqrt{2}$$
+
+\begin{equation*}
+\begin{aligned}
+\therefore OT^2 + TC^2 &= OC^2 \\
+OT^2 &= OC^2 - TC^2 \\
+	 &= (3^2+1^2) - 2 \\
+\therefore OT &= \sqrt{8} \\
+			  &= 2\sqrt{2} \\
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

@@ -1,0 +1,116 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}           
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import markers;
+import geometry;
+
+real l = 4, theta = 32.5;
+real AB = l*Cos(theta);
+pair A = (0,0);
+pair B = (AB*Cos(theta), AB*Sin(theta));
+pair C = (l,0);
+pair D = (2*l*Cos(theta)^2, 2*AB*Sin(theta));
+pair E = (2*l*Cos(theta)^2, 0);
+
+draw(A--B--C--cycle);
+draw(C--E--D--B--cycle);
+draw(A--D, StickIntervalMarker(2, 1, black));
+
+label("$A$", A, SW);
+label("$B$", B, NW);
+label("$C$", C, S);
+label("$D$", D, NE);
+label("$E$", E, SE);
+label("$l$", (A+C)/2, S);
+markangle("$\theta$", radius=10, C, A, B);
+perpendicular(B, NE, A-B, size=5);
+perpendicular(E, NE, D-E, size=5);
+\end{asy}
+\end{center}
+In the figure, the length of $AC$ is denoted by $l$ ($l>0$) and $\ang{0}<\theta <\ang{90}$. $AB\perp CB$ and $AE\perp DE$. If $AB=BD$, which of the following must be true?
+\begin{itemize}
+	\item[I.] $\bigtriangleup ABC \sim \bigtriangleup AED$
+	\item[II.] area of $\bigtriangleup AED$ is $2l^2\sin\theta\cos^3\theta$
+	\item[III.] $CE > 0$ for $\ang{0} < \theta < \ang{45}$
+\end{itemize} 
+
+\begin{choices}
+\choice I and II only
+\choice I and III only
+\choice II and III only
+\choice I, II and III%
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+\begin{itemize}
+	\item[1.] $\angle ABC = \angle AED = \ang{90}$
+	\item[2.] $\angle BAC = \angle EAD = \theta$
+	\item[3.] $\angle BCA = \angle EDA = \ang{90}-\theta$
+\end{itemize}
+By AAA, $\bigtriangleup ABC \sim \bigtriangleup AED$.\par
+$\therefore$ I is true.\par\medskip
+
+Area of $\bigtriangleup AED = \frac{1}{2}DE\times AE$
+\begin{equation*}
+\begin{aligned}[c]
+\sin\theta &= \frac{DE}{AD} \\
+		   &= \frac{DE}{2AB} \\
+\therefore DE &= 2AB\sin\theta
+\end{aligned}
+\qquad
+\begin{aligned}[c]
+\cos\theta &= \frac{AE}{AD} \\
+		   &= \frac{AE}{2AB} \\
+\therefore AE &= 2AB\cos\theta
+\end{aligned}
+\end{equation*}
+Consider  $\bigtriangleup ABC$,
+\begin{equation*}
+\begin{aligned}
+\cos\theta &= \frac{AB}{AC} \\
+		   &= \frac{AB}{l} \\
+\therefore AB &= l\cos\theta		   
+\end{aligned}
+\end{equation*}
+Combining everything,
+\begin{equation*}
+\begin{aligned}
+\text{Area of }\bigtriangleup AED &= \frac{1}{2}DE\times AE \\
+								  &= \frac{1}{2}(2AB\sin\theta)(2AB\cos\theta) \\
+								  &= 2AB^2\sin\theta\cos\theta \\
+								  &=  2(l\cos\theta)^2\sin\theta\cos\theta \\
+								  &= 2l^2\sin\theta\cos^3\theta
+\end{aligned}
+\end{equation*}
+$\therefore$ II is true.\par\medskip
+
+\begin{equation*}
+\begin{aligned}
+CE &= AE - AC \\
+   &= 2AB\cos\theta - AC \\
+   &= 2(l\cos\theta)\cos\theta - l \\
+   &= l(2\cos^2\theta - 1)
+\end{aligned}
+\end{equation*}
+For $CE > 0$,
+\begin{equation*}
+\begin{aligned}
+l(2\cos^2\theta - 1) &> 0 \\
+			\cos\theta &> \frac{1}{\sqrt{2}} \\
+\end{aligned}
+\end{equation*}
+$\theta = \ang{45}$ for $\cos\theta = \frac{1}{\sqrt{2}}$ and $\cos\theta$ is decreasing from $\theta = \ang{0}$ to \ang{90}, so $\theta$ cannot be greater than \ang{45} for $\cos\theta > \frac{1}{\sqrt{2}}$. Since $\ang{0} < \theta < \ang{90}$, so $\ang{0} < \theta < \ang{45}$.\par
+$\therefore$ III is true.
+\end{answer}
+
+\end{document}

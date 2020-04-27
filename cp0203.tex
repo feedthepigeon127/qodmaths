@@ -1,0 +1,32 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+$\alpha$ and $\beta$ are the real roots of the quadratic equation $$x^2-\lambda x+1=0$$ with $\lambda\ge 2$. What is the value of $\alpha^2 +\beta^2$ in term of $\lambda$?
+\begin{choices}
+\choice $2\lambda - 1$
+\choice $\lambda - 2$
+\choice $\lambda^2 - 2$
+\choice $\lambda^2 - 4$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: C}
+
+Sum of roots $\alpha+\beta=\frac{-b}{a}=\frac{-(-\lambda)}{1}=\lambda$.
+
+Product of roots $\alpha\beta=\frac{c}{a}=1$
+
+\begin{equation*}
+\begin{aligned}
+\therefore\alpha^2 +\beta^2 &= \left(\alpha+\beta\right)^2 - 2\alpha\beta \\
+				  &= \lambda^2 - 2(1) \\
+				  &= \lambda^2 - 2
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}

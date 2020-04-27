@@ -1,0 +1,67 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import markers;
+
+real s = 8, l = 15, ba = 120, sa = 60;
+pair A = (0,0);
+pair B = (s*Cos(sa), s*Sin(sa));
+pair C = B + (l, 0);
+pair D = A + (l, 0);
+pair M = A + (l*4/5, 0);
+
+path pgram = A--B--C--D--cycle; 
+draw(pgram);
+draw(M--C);
+//fill(M--C--D--cycle, lightgray);
+
+label("$A$", A, SW);
+label("$B$", B, NW);
+label("$C$", C, NE);
+label("$D$", D, SE);
+label("$M$", M, S);
+label("8", (A+B)/2, W);
+label("15", (B+C)/2, N);
+markangle("\ang{120}", radius=5, A, B, C);
+
+\end{asy}
+\end{center}
+
+In the figure, $ABCD$ is a parallelogram with $AB=8$ and $BC=15$. If $AM:MD=4:1$ and $\angle ABC=\ang{120}$, find the area of $\bigtriangleup MCD$.
+\begin{choices}
+\choice $6\sqrt{3}$
+\choice 6
+\choice $8\sqrt{2}$
+\choice $12\sqrt{3}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+Let $MD$ be $x$,
+\begin{equation*}
+\begin{aligned}
+AM + MD &= 15 \\
+4x + x &= 15 \\
+x &= 3
+\end{aligned}
+\end{equation*}
+Using $\frac{1}{2}ab\sin C$ for an area of a triangle,
+\begin{equation*}
+\begin{aligned}
+\therefore \text{Area of }\bigtriangleup MCD &= \frac{1}{2}MD\times CD\sin\angle MDC \\
+&= \frac{1}{2}(3)(8)\sin\ang{120} \\
+&= \frac{1}{2}(3)(8)\frac{\sqrt{3}}{2} \\
+&= 6\sqrt{3}
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}

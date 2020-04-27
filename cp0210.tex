@@ -1,0 +1,90 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+point A = (2, 1); point B = (5, 4); 
+point C = (0, 2*sqrt(5)-1); point P = (7-2*sqrt(5), 2*sqrt(5)-1);
+circle cle = circle(A, B, C);
+
+draw(Label("$x$", EndPoint), (-1,0)--(7,0), Arrow(1mm));
+draw(Label("$y$", EndPoint), (0,-1)--(0,7), Arrow(1mm));
+draw(cle);
+
+dot("$A$", A, SW);
+dot("$B$", B, NE);
+dot("$O$", P, E);
+\end{asy}
+\end{center}
+
+The figure shows a circle centred at $O$ that passes through the point $A$ and $B$ and tangent to the $y$-axis. If $A=(2, 1)$ and $B=(5, 4)$, what is the radius of the circle? 
+\begin{choices}
+\choice $2\sqrt{5}-2$
+\choice $7-2\sqrt{5}$%
+\choice $2\sqrt{5}+2$
+\choice $7+2\sqrt{5}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+point A = (2, 1); point B = (5, 4); 
+point C = (0, 2*sqrt(5)-1); point P = (7-2*sqrt(5), 2*sqrt(5)-1);
+circle cle = circle(A, B, C);
+
+draw(Label("$x$", EndPoint), (-1,0)--(7,0), Arrow(1mm));
+draw(Label("$y$", EndPoint), (0,-1)--(0,7), Arrow(1mm));
+draw(cle);
+
+dot("", A, SW);
+dot("", B, NE);
+dot("$(p, q)$", P, SW);
+
+segment AB = segment(A, B);
+line perpbis = perpendicular(P, AB);
+
+draw(AB, StickIntervalMarker(2, 1, black)); 
+draw(Label("$y=-x+6$", EndPoint, SW), perpbis);
+perpendicularmark(AB, perpbis, quarter=1, size=5);
+
+\end{asy}
+\end{center}
+Let the centre of the circle be $(p, q)$ and its radius $r$. As the circle is tangent to the $y$-axis, $p=r$, so the centre of the circle can be denoted by $(r,q)$. 
+
+A perpendicular bisector of a chord always passes through the centre of the circle. The perpendicular bisector of the chord $AB$ is $y=-x+6$, so we have
+\begin{equation*}
+\begin{aligned}
+q &= -p + 6 \\
+q &= -r + 6
+\end{aligned}
+\end{equation*}
+
+The equation of the circle that passes through $(2,1)$ with a centre $(r, q)$ is
+\begin{equation*}
+\begin{aligned}
+(2-r)^2 + (1-q)^2 &= r^2 \\
+(2-r)^2 + \left[1-(-r+6)\right]^2 &= r^2 \\
+(2-r)^2 + (r-5)^2 &= r^2 \\
+4-4r+r^2+r^2-10r+25 &= r^2 \\
+r^2-14r+29 &= 0 \\
+r = 7\pm 2\sqrt{5}
+\end{aligned}
+\end{equation*}
+Since $7+2\sqrt{5}>5$, $r=7-2\sqrt{5}$
+\end{answer}
+\end{document}
+
+

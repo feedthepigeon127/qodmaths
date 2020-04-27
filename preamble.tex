@@ -1,0 +1,66 @@
+\usepackage[UKenglish]{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{libertine}
+\usepackage[libertine]{newtxmath}
+
+\usepackage[autostyle]{csquotes}
+\usepackage[free-standing-units, binary-units]{siunitx}
+\sisetup{%
+locale=UK,
+range-phrase=--,
+table-figures-decimal=2,
+table-auto-round=true,
+}
+\DeclareSIUnit\Molar{\textsc{m}}
+
+\usepackage{chemmacros}
+\usepackage{amsmath, amsfonts, amssymb}
+\usepackage{textcomp}
+\usepackage{bm}
+\usepackage{xfrac}
+
+\usepackage{varwidth}
+\usepackage{comment}
+\makeatletter
+\g@addto@macro{\@parboxrestore}{\parskip=\baselineskip}
+\makeatother
+
+\usepackage[inline]{asymptote}
+
+\newcounter{choice}
+\renewcommand\thechoice{\Alph{choice}}
+\newcommand\choicelabel{\thechoice.}
+
+\newenvironment{choices}%
+  {\list{\choicelabel}%
+     {\usecounter{choice}\def\makelabel##1{\hss\llap{##1}}%
+       \settowidth{\leftmargin}{W.\hskip\labelsep\hskip 2.5em}%
+       \def\choice{%
+         \item
+       } % choice
+       \labelwidth\leftmargin\advance\labelwidth-\labelsep
+       \topsep=0pt
+       \partopsep=0pt
+     }%
+  }%
+  {\endlist}
+
+\newenvironment{oneparchoices}%
+  {%
+    \setcounter{choice}{0}%
+    \def\choice{%
+      \refstepcounter{choice}%
+      \ifnum\value{choice}>1\relax
+        \penalty -50\hskip 1em plus 1em\relax
+      \fi
+      \choicelabel
+      \nobreak\enskip
+    }% choice
+    % If we're continuing the paragraph containing the question,
+    % then leave a bit of space before the first choice:
+    \ifvmode\else\enskip\fi
+    \ignorespaces
+  }%
+  {}

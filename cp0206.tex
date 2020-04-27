@@ -1,0 +1,33 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+If $2^{3^4} = 4^{3^n}$, what is the value of $n$?
+\begin{choices}
+\choice $3+\log_{2}3$
+\choice $\frac{9\sqrt{2}}{2}$
+\choice $\log_{6}81$
+\choice $4-\log_{3}2$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+\begin{equation*}
+\begin{aligned}
+2^{3^4} &= 4^{3^n} \\
+2^{3^4} &= (2^2)^{3^n} \\
+2^{3^4} &= 2^{2\cdot 3^n} \\
+3^4 &= 2\cdot 3^n \\
+3^n &= \frac{3^4}{2} \\
+n &= \log_{3}\left(\frac{3^4}{2}\right) \\
+  &= 4-\log_{3}2 
+\end{aligned}
+\end{equation*}
+\end{answer}
+
+\end{document}

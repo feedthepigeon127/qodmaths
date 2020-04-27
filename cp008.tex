@@ -1,0 +1,72 @@
+\documentclass[border=3pt,varwidth=75mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+settings.render=0;
+settings.prc=false;
+
+size(60mm);
+import geometry;
+import three;
+
+currentprojection=orthographic((5,2,3));
+
+real a = 18;
+real b = 26;
+real c = 15;
+real h = 20;
+
+triple D = (0, a, 0);
+triple E = (0, 0, h);
+triple B = (sqrt(c^2 - 0.25*(b-a)^2), -0.5*(b-a), 0);
+triple C = D + (sqrt(c^2 - 0.25*(b-a)^2), 0.5*(b-a), 0);
+
+draw(O--B--C--D--cycle, dotted);
+draw(O--E, 1bp+black);
+
+draw(E--B, dashed);
+draw(E--C, dashed);
+draw(E--D, dashed);
+
+label("$A$", O, W);
+label("$B$", B, (unit(B-O)+unit(B-C)+unit(B-E))/3);
+label("$C$", C, (unit(C-B)+unit(C-D)+unit(C-E))/3);
+label("$D$", D, (unit(D-O)+unit(D-C)+unit(D-E))/3);
+label("$E$", E, (unit(E-O)+unit(E-B)+unit(E-C)+unit(E-D))/4);
+
+\end{asy}
+\end{center}
+
+In the figure, $ABCD$ is a trapezium with $AD\parallel BC$ lying on the horizontal ground and $EA$ is a vertical pole standing on it.  If $AD=\SI{18}{\centi\meter}$, $BC=\SI{26}{\centi\meter}$, $AB=CD=\SI{15}{\centi\meter}$ and $AE=\SI{20}{\centi\meter}$, find the angle between $EC$ and the horizontal ground $ABCD$ correct to the nearest degree.
+
+\begin{choices}
+\choice \ang{37}%
+\choice \ang{48}
+\choice \ang{53}
+\choice \ang{59}
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+$AC=\sqrt{AD\times BC + AB^2}$ for an isosceles trapezium. The angle required is $\angle ACE$, so
+\begin{equation*}
+\begin{aligned}
+\tan\angle ACE &= \frac{AE}{AC} \\
+			   &= \frac{AE}{\sqrt{AD\times BC + AB^2}} \\
+			   &= \frac{20}{\sqrt{18\times 26 + 15^2}} \\
+\therefore \angle ACE &= \ang{37.23} \\			   
+\end{aligned}
+\end{equation*}
+
+
+
+\end{answer}
+\end{document}

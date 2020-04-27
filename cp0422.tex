@@ -1,0 +1,52 @@
+\documentclass[border=3pt,varwidth=80mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+
+$\alpha$ and $\beta$ are two distinct real roots of
+\begin{equation*}
+\log(20x)\log(\frac{x}{2020}) = 689
+\end{equation*}
+What is the value of $\alpha\beta$? 
+
+\begin{choices}
+\choice 2709
+\choice 2000
+\choice 1331
+\choice 101%
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+\begin{equation*}
+\begin{aligned}
+\log(20x)\log(\frac{x}{2020}) &= 689 \\
+\left(\log 20 + \log x\right)\left(\log x-\log 2020\right) &= 689 \\
+\end{aligned}
+\end{equation*}
+
+Let $\log x$ be $y$
+\begin{equation*}
+\begin{aligned}
+\left(\log 20 + y\right)\left(y-\log 2020\right) &= 689 \\
+y\log20-\log20\log2020+y^2-y\log2020 &= 689 \\
+y^2 + \left(\log20-\log2020\right)y -\log20\log2020 - 689 &= 0 \\ 
+\end{aligned}
+\end{equation*}
+This is a quadratic equation in $y$.
+\begin{equation*}
+\begin{aligned}
+\therefore\text{sum of root } &= -\frac{\log20-\log2020}{1} \\
+y_1 + y_2			&= \log\frac{2020}{20} \\
+\log\alpha + \log\beta &= \log101 \\
+\log(\alpha\beta) &= \log101 \\
+\alpha\beta &= 101 \\
+\end{aligned}
+\end{equation*} 
+\end{answer}
+\end{document}

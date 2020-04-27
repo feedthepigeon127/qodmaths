@@ -1,0 +1,37 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+
+In a bus, the ratio of people wearing black shirt to white shirt is $3:1$. At the next station, there are 17 people wearing white shirt getting off and 3 people wearing black shirt getting on the bus, and now the square of the number of people wearing white shirt equals to the number of people wearing black shirt. What is the total number of people in the bus originally? 
+
+\begin{choices}
+\choice \num{36}
+\choice \num{44}
+\choice \num{76}
+\choice \num{104}%
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+Let the original number of people wearing black shirt be $3x$ and that of white shirt be $x$. At the next station,
+\begin{equation*}
+\begin{aligned}
+(x - 17)^2 &= 3x + 3 \\
+x^2 - 34x + 289 &= 3x + 3 \\
+x^2 - 37x + 286 &= 0 \\
+(x-11)(x-26) &= 0 \\
+\therefore x = 11 \quad&\text{or}\quad x = 26
+\end{aligned}
+\end{equation*}
+As 17 people wearing white shirt is getting off the bus, $11-17 < 0$, so $x=11$ is rejected.
+
+$\therefore$ the total number of people is $3x+x = 4x = 4(26) = 104$.
+
+\end{answer}
+\end{document}

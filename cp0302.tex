@@ -1,0 +1,75 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real p = 12;
+real a = p/(3+sqrt(3)); real b = sqrt(3)*p/(3+sqrt(3)); real c = 2*p/(3+sqrt(3));
+triangle t = triangleabc(a, b, c);
+point X = rotate(30, t.B)*(t.B + a); 
+point Y = rotate(30, t.C)*(t.C + a);
+
+draw(t.B--X--Y--t.C);
+draw(segment(t.B, t.C), StickIntervalMarker(1, 1, black));
+draw(segment(t.C, Y), StickIntervalMarker(1, 1, black));
+show(La="", Lb="", Lc="", t);
+
+label("$X$", X, SE);
+label("$Y$", Y, NE);
+markangle("\ang{60}", t.C, t.B, t.A, radius=7);
+markangle("\ang{30}", t.B, t.A, t.C, radius=15);
+perpendicularmark(t.AC, t.BC, size=5, quarter=3);
+
+\end{asy}
+\end{center}
+
+In the figure, $\bigtriangleup ABC$ has a perimeter of \num{12} with $\angle BAC=\ang{30}$ and $\angle CBA=\ang{60}$. $BXYC$ is a square attached to $BC$ of $\bigtriangleup ABC$. What is the perimeter of the square $BXYC$?
+
+\begin{choices}
+\choice $32\left(2\sqrt{3}-3\right)$
+\choice $8\left(3-\sqrt{3}\right)$%
+\choice $8\left(2\sqrt{3}-3\right)$
+\choice $2\left(3-\sqrt{3}\right)$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+Considering $\bigtriangleup ABC$,
+\begin{equation*}
+\begin{aligned}[c]
+\tan\ang{60} &= \frac{AC}{BC} \\
+AC &= \sqrt{3}BC
+\end{aligned}\qquad
+\begin{aligned}[c]
+\sin\ang{30} &= \frac{BC}{AB} \\
+AB &= 2BC
+\end{aligned}
+\end{equation*}
+The perimeter of $\bigtriangleup ABC$ is 12,
+\begin{equation*}
+\begin{aligned}
+AB + BC + AC &= 12 \\
+2BC + BC + \sqrt{3}BC &= 12 \\
+BC &= \frac{12}{3+\sqrt{3}}
+\end{aligned}
+\end{equation*}
+The perimeter of the square $BXYC$ is $4BC$,
+\begin{equation*}
+\begin{aligned}
+4BC &= \frac{4\cdot12}{3+\sqrt{3}} \\
+ 	&= \frac{48}{3+\sqrt{3}}\cdot\frac{3-\sqrt{3}}{3-\sqrt{3}} \\
+ 	&= \frac{48\left(3-\sqrt{3}\right)}{6} \\
+ 	&= 8\left(3-\sqrt{3}\right)
+\end{aligned}
+\end{equation*} 
+\end{answer}
+\end{document}

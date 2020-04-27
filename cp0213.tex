@@ -1,0 +1,97 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+//show(currentcoordsys);
+point A=(-6,-4.5); point B=(6,4.5);
+point C=(6,-8); point D=(-6,-8);
+line AB=line(A,B);
+circle cle = circle((point)(0,0), 10);
+point[] XY=intersectionpoints(AB, cle);
+
+draw(cle);
+draw(AB);
+draw(A--B--C--D--cycle);
+
+draw(Label("$x$", EndPoint), (-11,0)--(11,0), Arrow(1mm));
+draw(Label("$y$", EndPoint), (0,-11)--(0,11), Arrow(1mm));
+
+label("$O$", (0,0), NW);
+dot("$A$", A, NW);
+dot("$B$", B, NW);
+dot("$C$", C, SE);
+dot("$D$", D, SW);
+dot("$X$", XY[0], W);
+dot("$Y$", XY[1], N);
+perpendicularmark(segment(B,C), segment(D,C), quarter=3, size=5);
+perpendicularmark(segment(A,D), segment(C,D), quarter=2, size=5);
+
+\end{asy}
+\end{center}
+
+In the figure, the line passes through the origin and intersects the circle at $X$ and $Y$. It also passes through the point $A=(-6,-4.5)$ and $B=(6,4.5)$. The circle is centred at the origin. $CD$ is a chord of the circle parallel to and below the $x$-axis such that $AD\perp CD$ and $BC\perp CD$. If $XA:AB:BY=1:6:1$, find the area of the trapezoid ABCD.
+
+\begin{choices}
+\choice 96%
+\choice 112
+\choice 144
+\choice 150
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+$XY$ is the diameter of the circle. Let $x$ be $XA$ and the radius of the circle be $r$,
+\begin{equation*}
+\begin{aligned}
+XA+AB+BY &= XY \\
+x+6x+x &= 2r \\
+x &= \frac{r}{4} \\
+\end{aligned}
+\end{equation*}
+The distance between $A$ and $B$ is
+\begin{equation*}
+\begin{aligned}
+AB &= \sqrt{(x_B-x_A)^2 + (y_B-y_A)^2} \\
+   &= \sqrt{(6-(-6))^2 + (4.5-(-4.5))^2} \\
+   &= \sqrt{12^2+9^2} \\
+   &= 15
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\because AB &= 6x \\
+\therefore 6\frac{r}{4} &= 15 \\
+r &= 10
+\end{aligned}
+\end{equation*}
+The equation of the circle is $x^2+y^2=10^2$.
+
+Since $BC\perp CD$, $C$ is the intersection of the line $x=6$ and the circle (at the fourth quadrant as shown in the figure),
+\begin{equation*}
+\begin{aligned}
+6^2+y^2 &= 10^2 \\
+y &= -8
+\end{aligned}
+\end{equation*}
+$C=(6,-8)$ and similarly, $D=(-6,-8)$. 
+
+$\therefore CD=6-(-6)=12$, $BC=4.5-(-8)=12.5$, $AD=-4.5-(-8)=3.5$.
+\begin{equation*}
+\begin{aligned}
+\text{area of the trapezoid ABCD} &= \frac{1}{2}CD(BC+AD) \\
+								  &= \frac{1}{2}12(12.5+3.5) \\
+								  &= 96
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+
+real l = 10;
+
+point A = (0,0);
+point B = A + (l,0);
+point C = A + rotate(60,A)*(l,0);
+point D = A + (l/2,0);
+point E = D + (0,l/2);
+point F = A + (0,l/2);
+point X = intersectionpoint(line(A,C),line(E,F));
+
+draw(A--B--C--cycle);
+draw(A--D--E--F--cycle);
+draw(C--E);
+
+label("$A$", A, labelat(A, new pair[] {B,C,F}));
+label("$B$", B, labelat(B, new pair[] {A,C}));
+label("$C$", C, labelat(C, new pair[] {A,C}));
+label("$D$", D, labelat(D, new pair[] {E}));
+label("$E$", E, labelat(E, new pair[] {F,D}));
+label("$F$", F, labelat(F, new pair[] {A,E}));
+label("$X$", X, labelat(X, new pair[] {A,E}));
+
+write(distance2d(F,X));
+//write(sharpdegrees(line(C,E), line(E,D)));
+
+\end{asy}
+\end{center}
+
+In the figure, $\bigtriangleup ABC$ is an equilateral triangle and $ADEF$ is a square. $EF$ and $AC$ intersect at point $X$. $CED$ is a straight line. If $AB=\SI{10}{\centi\meter}$, then the area of $\bigtriangleup AFX$ correct to the nearest \SI{0.1}{\centi\meter\squared} is 
+
+\begin{choices}
+\choice \SI{4.8}{\centi\meter\squared}.
+\choice \SI{7.2}{\centi\meter\squared}.
+\choice \SI{8.8}{\centi\meter\squared}.
+\choice \SI{10.8}{\centi\meter\squared}.
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+$CD$ is the altitude of the equilateral triangle, so $AD = \SI{5}{\centi\meter}$.
+
+$CE=CD-ED$ and $CD=AC\sin\ang{60}=5\sqrt{3}$,
+\begin{equation*}
+\begin{aligned}
+\therefore CE &= 5\sqrt{3} - 5 \\
+			  &= 5(\sqrt{3}-1) \\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\because \bigtriangleup CXE &\sim \bigtriangleup CAD \\
+\therefore \frac{XE}{AD} &= \frac{CE}{CD} \\
+XE &= 5\times\frac{5(\sqrt{3}-1)}{5\sqrt{3}} \\
+	&= \frac{5(\sqrt{3}-1)}{\sqrt{3}} \\
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\therefore \bigtriangleup AFX &= \frac{AF\times FX}{2} \\
+							  &= \frac{5\times(5-\frac{5(\sqrt{3}-1)}{\sqrt{3}})}{2} \\
+							  &= \SI{7.217}{\centi\meter\squared}
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

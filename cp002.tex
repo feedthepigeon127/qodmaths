@@ -1,0 +1,92 @@
+\documentclass[border=3pt,varwidth=80mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+
+real r = 1;
+
+point O = (0, 0);
+point D = (r, 0);
+point A = r*dir(-108);
+point B = rotate(-108,A)*(A+r*unit(O-A));
+point C = rotate(-108,B)*(B+r*unit(A-B));
+point E = O+r*unit(O-A);
+point K = intersectionpoint(line(B,C), line(O,D));
+
+path cle = scale(r)*unitcircle;
+
+draw(cle);
+draw(O--A--B--C--D--cycle);
+draw(D--K);
+draw(C--K);
+draw(O--E);
+draw(E--K);
+
+label("$O$", O, W);
+label("$A$", A, (unit(A-O)+unit(A-B))/2);
+label("$B$", B, (unit(B-A)+unit(B-C))/2);
+label("$C$", C, unit(C-D));
+label("$D$", D, unit(D-C));
+label("$E$", E, (unit(E-O)+unit(E-K))/2);
+label("$K$", K, (unit(K-C)+unit(K-E))/2);
+
+markangle("", E,K,O);
+
+//write(degrees(line(E,K),line(O,K)));
+
+\end{asy}
+\end{center}
+
+In the figure, $OABCD$ is a regular pentagon. $O$ is the centre and $AE$ is the diameter of the circle $ADE$. $BC$ produced and $OD$ produced meet at the point $K$. Find $\angle EKO$ in nearest degree.
+
+\begin{choices}
+\choice \ang{17}
+\choice \ang{20}
+\choice \ang{22}%
+\choice \ang{25}
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: C}
+
+Denote the radius of the circle by $r$.
+
+Interior angles of regular pentagon are \ang{108}, so $\angle KDC = \angle KCD = \ang{180} - \ang{108} = \ang{72}$, and $\angle CKD = \ang{36}$.
+
+Using Sine law in $\bigtriangleup CDK$,
+\begin{equation*}
+\begin{aligned}
+\frac{KD}{\sin\ang{72}} &= \frac{CD}{\sin\ang{36}} \\
+KD &= r\frac{\sin\ang{72}}{\sin\ang{36}} \\
+\end{aligned}
+\end{equation*}
+
+Consider $\bigtriangleup EOK$, $\angle EOK = \ang{180}-\ang{108} = \ang{72}$. Using Cosine law,
+\begin{equation*}
+\begin{aligned}
+EK^2 &= OE^2 + OK^2 - 2(OE)(OK)\cos\angle EOK \\
+&= r^2 + (r+r\frac{\sin\ang{72}}{\sin\ang{36}})^2 - 2r(r+r\frac{\sin\ang{72}}{\sin\ang{36}})\cos\ang{72} \\
+EK &= r\sqrt{1 + (1+\frac{\sin\ang{72}}{\sin\ang{36}})^2 - 2(1+\frac{\sin\ang{72}}{\sin\ang{36}})\cos\ang{72}} \\
+\end{aligned}
+\end{equation*}
+
+Using Sine law,
+\begin{equation*}
+\begin{aligned}
+\frac{OE}{\sin\angle EKO} &= \frac{EK}{\sin\angle EOK} \\
+\sin\angle EKO &= \frac{r\sin\ang{72}}{r\sqrt{1 + (1+\frac{\sin\ang{72}}{\sin\ang{36}})^2 - 2(1+\frac{\sin\ang{72}}{\sin\ang{36}})\cos\ang{72}}} \\
+\angle EKO &= \ang{22.39} \\
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

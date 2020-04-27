@@ -1,0 +1,35 @@
+\documentclass[border=3pt,varwidth=82.5mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+
+Let $x_1$, $y_1$ and $z_1$ be the mean, the median and the range of $\left\lbrace \cos\ang{5}, \cos\ang{10}, \cos\ang{15},\ldots,\cos\ang{85}, \cos\ang{90}\right\rbrace$ respectively, while $x_2$, $y_2$ and $z_2$ be the mean, the median and the range of $\left\lbrace \sin\ang{5}, \sin\ang{10}, \sin\ang{15},\ldots,\sin\ang{85}, \sin\ang{90}\right\rbrace$ respectively. Which of the following are true?
+\begin{itemize}
+\item[I.] $x_1 < x_2$
+\item[II.] $y_1 < y_2$
+\item[III.] $z_1 > z_2$
+\end{itemize}
+
+\begin{choices}
+\choice I and II only
+\choice I and III only
+\choice II and III only
+\choice I, II and III%
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: D}
+
+Observe that $\cos\ang{5}=\sin\ang{85}$, $\cos\ang{10}=\sin\ang{80}$\ldots, so the only difference between the two groups are $\cos\ang{90}=0$ in group 1 and $\sin\ang{90}=1$ in group 2.
+
+As 0 in group 1 will lower the mean while 1 in group 2 will increase the mean, so $x_1 < x_2$. Similarly, $y_1 < y_2$.
+
+The maximum number in group 1 is $\cos\ang{5}$, while the minimum is 0, so $z1=\cos\ang{5}-0=0.9961$; The maximum number in group 2 is 1, while the minimum is $\sin\ang{5}$, so $z2=1-\sin\ang{5}=0.9128$. Therefore, $z_1 > z_2$.
+
+\end{answer}
+\end{document}

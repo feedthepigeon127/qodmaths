@@ -1,0 +1,151 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+//show(currentcoordsys);
+real a = 4; 
+path sqr = scale(a)*unitsquare;
+point A = relpoint(sqr, 0.75);
+point B = relpoint(sqr, 0);
+point C = relpoint(sqr, 0.25);
+point D = relpoint(sqr, 0.5);
+point scc = (a/2, a);
+circle cle = circle(scc, a/2);
+arc sc = arc(cle, 180, 360);
+
+line[] tC = tangents(cle, C);
+point E_ = intersectionpoint(tC[0], segment(A,B));
+segment dC = segment(C, E_);
+
+line[] tB = tangents(cle, B);
+point F = intersectionpoint(tB[0], segment(C,D));
+segment dB = segment(B, F);
+
+point P = intersectionpoint(dC, dB);
+
+draw(sqr);
+draw(sc);
+draw(dC);
+draw(dB);
+
+label("$A$", A, NW);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, NE);
+label("$E$", E_, W);
+label("$F$", F, E);
+label("$P$", P, S);
+//dot("", P);
+
+\end{asy}
+\end{center}
+
+In the figure, a semicircle with diameter $AD$ is inscribed in the square $ABCD$. Two lines, $CE$ and $BF$, are tangents to the semicircle, and they intersect at $P$. If $BC=4$, what is the area of $\bigtriangleup BPC$? 
+
+\begin{choices}
+\choice $2\sqrt{2}$
+\choice $3$%
+\choice $\sqrt{10}$
+\choice $2\sqrt{3}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+//show(currentcoordsys);
+real a = 4; 
+path sqr = scale(a)*unitsquare;
+point A = relpoint(sqr, 0.75);
+point B = relpoint(sqr, 0);
+point C = relpoint(sqr, 0.25);
+point D = relpoint(sqr, 0.5);
+point scc = (a/2, a);
+circle cle = circle(scc, a/2);
+arc sc = arc(cle, 180, 360);
+
+line[] tC = tangents(cle, C);
+point E_ = intersectionpoint(tC[0], segment(A,B));
+segment dC = segment(C, E_);
+point X = tC[0].B ;
+
+line[] tB = tangents(cle, B);
+point F = intersectionpoint(tB[0], segment(C,D));
+segment dB = segment(B, F);
+
+point P = intersectionpoint(dC, dB);
+
+point M = (a/2, 0);
+
+draw(sqr);
+draw(sc);
+draw(dC);
+draw(dB);
+draw(P--M, dashed);
+
+label("$A$", A, NW);
+label("$B$", B, SW);
+label("$C$", C, SE);
+label("$D$", D, NE);
+label("$E$", E_, W);
+label("$F$", F, E);
+label("$P$", P, S);
+dot("$X$", X, NE);
+dot("$M$", M, S);
+
+perpendicularmark(segment(B,C), segment(A,B), size=2mm, quarter=1);
+perpendicularmark(segment(P,M), segment(B,C), size=2mm, quarter=2);
+
+\end{asy}
+\end{center}
+
+$X$ denotes the point when $CE$ touches the semicircle. As the lengths of tangent to a circle are the same when they are drawn from the same point, $CX=CD=4$ and $EX=EA$. The length of $EA$ is denoted by $x$, then by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+BC^2 + BE^2 &= CE^2 \\
+4^2 + (4-x)^2 &= (4+x)^2 \\
+16 + 16 - 8x + x^2 &= 16 + 8x + x^2 \\
+x &= 1
+\end{aligned}
+\end{equation*}
+Consider $\bigtriangleup CEB$,
+\begin{equation*}
+\begin{aligned}
+\tan\angle BCE &= \frac{EB}{BC} \\
+			   &= \frac{4-1}{4} \\
+			   &= \frac{3}{4} \\
+\end{aligned}
+\end{equation*}
+Consider $\bigtriangleup CPM$,
+\begin{equation*}
+\begin{aligned}
+\tan\angle MCP &= \frac{PM}{MC} \\
+\tan\angle BCE &= \frac{PM}{MC} \\
+PM &= MC\tan\angle BCE \\
+   &= 2\times\frac{3}{4} \\
+   &= \frac{3}{2}
+\end{aligned}
+\end{equation*}
+\begin{equation*}
+\begin{aligned}
+\therefore\text{area of }\bigtriangleup BPC &= \frac{1}{2}BC\times PM \\
+		&= \frac{1}{2}\left(4\right)\left(\frac{3}{2}\right) \\
+		&= 3
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

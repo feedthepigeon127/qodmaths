@@ -1,0 +1,115 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+
+real r = 1; real theta = 50; real alpha = (180-3*theta)/2;
+real vang = 110; real ofs = vang-90;
+circle cle = circle(origin, r);
+
+point A = angpoint(cle, vang);
+point B = intersectionpoints(cle, line(A,A+dir(180+theta+ofs)))[0];
+point C = intersectionpoints(cle, line(A,A+dir(-theta+ofs)))[0];
+
+point D = intersectionpoints(cle, rotate(-3*theta, C)*line(A,C))[0];
+point E = intersectionpoint(line(A,C), rotate(180-alpha,D)*line(C,D));
+
+draw(cle);
+draw(A--B--C--cycle);
+draw(C--D--E--cycle);
+
+label("$A$", A, labelat(A, new pair[] {B,C}));
+label("$B$", B, labelat(B, new pair[] {A,C}));
+label("$C$", C, labelat(C, new pair[] {B,D}));
+label("$D$", D, labelat(D, new pair[] {C,E}));
+label("$E$", E, labelat(E, new pair[] {C,D}));
+
+markangle("", C, B, A, radius=10);
+
+write(sharpdegrees(line(C,D), line(D,E)));
+write(sharpdegrees(line(C,E), line(E,D)));
+
+\end{asy}
+\end{center}
+
+In the figure, the point $A$, $B$, $C$ and $D$ are lying on a circle such that the chord $AB=AC$ and $CD=CB$. $E$ is a point outside the circle such that $ACE$ is a straight line and $CD=CE$. If $\angle CED=\ang{15}$, then $\angle ABC$ is
+
+\begin{choices}
+\choice \ang{50}.%
+\choice \ang{52}.
+\choice \ang{55}.
+\choice \ang{58}.
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+usepackage("siunitx");
+
+real r = 1; real theta = 50; real alpha = (180-3*theta)/2;
+real vang = 110; real ofs = vang-90;
+circle cle = circle(origin, r);
+
+point A = angpoint(cle, vang);
+point B = intersectionpoints(cle, line(A,A+dir(180+theta+ofs)))[0];
+point C = intersectionpoints(cle, line(A,A+dir(-theta+ofs)))[0];
+
+point D = intersectionpoints(cle, rotate(-3*theta, C)*line(A,C))[0];
+point E = intersectionpoint(line(A,C), rotate(180-alpha,D)*line(C,D));
+
+draw(cle);
+draw(A--B--C--cycle);
+draw(C--D--E--cycle);
+draw(B--D, dashed);
+draw(A--B, StickIntervalMarker(1,1,size=2mm));
+draw(A--C, StickIntervalMarker(1,1,size=2mm));
+draw(B--C, StickIntervalMarker(1,2,size=2mm));
+draw(D--C, StickIntervalMarker(1,2,size=2mm));
+draw(C--E, StickIntervalMarker(1,2,size=2mm));
+
+label("$A$", A, labelat(A, new pair[] {B,C}));
+label("$B$", B, labelat(B, new pair[] {A,C}));
+label("$C$", C, labelat(C, new pair[] {B,D}));
+label("$D$", D, labelat(D, new pair[] {C,E}));
+label("$E$", E, labelat(E, new pair[] {C,D}));
+
+markangle("$\theta$", C, B, A, radius=10);
+markangle("$\ang{15}$", C, E, D, radius=30);
+
+write(sharpdegrees(line(C,D), line(D,E)));
+write(sharpdegrees(line(C,E), line(E,D)));
+
+\end{asy}
+\end{center}
+
+Let $\angle ABC$ be $\theta$. Since $AB=AC$, $\angle ACB=\theta$ and $\angle BCE=\ang{180}-\theta$.
+
+$\angle BAC = \ang{180}-2\theta$, and since the same arc ($BC$ here) in a circle subtends same angle in the circumference, $\angle CDB = \angle BAC$. Since $CD=CB$, $\angle CBD = \angle CDB = \ang{180}-2\theta$. So $\angle BCD = \ang{180}-2(\ang{180}-2\theta) = 4\theta - \ang{180}$.
+
+\begin{equation*}
+\begin{aligned}
+\because \angle DCE &= \angle BCD + \angle BCE \\
+\therefore \ang{180}-2\times\ang{15} &=  4\theta - \ang{180} + \ang{180}-\theta \\
+3\theta &= \ang{150} \\
+\theta &= \ang{50} \\
+\end{aligned}
+\end{equation*}
+
+
+
+\end{answer}
+\end{document}

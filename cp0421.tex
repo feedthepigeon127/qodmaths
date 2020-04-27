@@ -1,0 +1,135 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real a = 4; real b = 8; real c = 2; real rdeg = 105;
+real r = sqrt((b^2+c^2)*(b^2+(a+c)^2)) / (2*b) ;
+point O = (sqrt(r^2 - (a^2/4)), a/2);
+point A = rotate(rdeg, O)*(0, 0); 
+point B = rotate(rdeg, O)*(0, a); 
+point C = rotate(rdeg, O)*(b, a); 
+point D = rotate(rdeg, O)*(b, a+c);
+circle cle = circle(O, r);
+segment AB = segment(A,B);
+segment BC = segment(B,C);
+segment CD = segment(C,D);
+
+draw(cle);
+draw(AB); draw(BC); draw(CD);
+
+dot("$A$", A, SE);
+dot("$B$", B, SW);
+dot("$C$", C, NE);
+dot("$D$", D, NW);
+dot("$O$", O);
+
+perpendicularmark(AB, BC, size=2mm, quarter=3);
+perpendicularmark(BC, CD, size=2mm, quarter=2);
+
+\end{asy}
+\end{center}
+
+In the figure, a circle is centred at $O$ and passes through the point $A$, $B$ and $D$. $AB$ is a chord of the circle. $C$ is a point inside the circle such that $BC\perp AB$ and $CD\perp BC$. If $AB=4$, $BC=8$ and $CD=2$, what is the radius of the circle?
+
+\begin{choices}
+\choice $\dfrac{5\sqrt{17}}{4}$%
+\choice $\dfrac{5\sqrt{5}}{2}$
+\choice $\dfrac{\sqrt{145}}{2}$
+\choice $\sqrt{74}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: A}
+
+\begin{center}
+\begin{asy}
+size(50mm);
+import geometry;
+
+real a = 4; real b = 8; real c = 2; real rdeg = 105;
+real r = sqrt((b^2+c^2)*(b^2+(a+c)^2)) / (2*b) ;
+point O = (sqrt(r^2 - (a^2/4)), a/2);
+point A = rotate(rdeg, O)*(0, 0); 
+point B = rotate(rdeg, O)*(0, a); 
+point C = rotate(rdeg, O)*(b, a); 
+point D = rotate(rdeg, O)*(b, a+c);
+circle cle = circle(O, r);
+segment AB = segment(A,B);
+segment BC = segment(B,C);
+segment CD = segment(C,D);
+
+point M = (A+B)/2;
+point N = intersectionpoint(line(C,D), line(O,M));  
+segment OM = segment(O,M);
+segment OB = segment(O,B);
+segment ON = segment(O,N);
+segment CN = segment(C,N);
+segment OD = segment(O,D);
+
+draw(cle);
+draw(AB); draw(BC); draw(CD);
+draw(OM, dashed); draw(OB, dashed);
+draw(ON, dashed); draw(OD, dashed); draw(CN, dashed);
+
+
+dot("$A$", A, SE);
+dot("$B$", B, SW);
+dot("$C$", C, NE);
+dot("$D$", D, NW);
+dot("$O$", O);
+dot("$M$", M, SE);
+dot("$N$", N, NE);
+
+perpendicularmark(AB, BC, size=2mm, quarter=3);
+perpendicularmark(BC, CD, size=2mm, quarter=2);
+perpendicularmark(OM, AB, size=2mm, quarter=2);
+perpendicularmark(ON, CN, size=2mm, quarter=2);
+
+distance("$x$", O, N, 6mm);
+distance("$8-x$", O, M, -6mm);
+
+\end{asy}
+\end{center}
+
+In the figure, $OM$ is the perpendicular bisector of $AB$ and denote the length of $ON$ by $x$. Let the radius of the circle be $r$.
+
+Consider $\bigtriangleup OBM$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+BM^2 + OM^2 &= OB^2 \\
+2^2 + (8-x)^2 &= r^2 \\
+x^2 - 16x + 68 &= r^2
+\end{aligned}
+\end{equation*}
+Consider $\bigtriangleup OND$, by Pythagorean theorem,
+\begin{equation*}
+\begin{aligned}
+ON^2 + ND^2 &= OD^2 \\
+x^2 + (CD+CN)^2 &= r^2 \\
+x^2 + (2+2)^2 &= r^2 \\
+x &= \sqrt{r^2 - 16}
+\end{aligned}
+\end{equation*}
+$\therefore (r^2 - 16) - 16\sqrt{r^2 - 16} + 68 = r^2$
+\begin{equation*}
+\begin{aligned}
+16\sqrt{r^2 - 16} &= 52 \\
+\sqrt{r^2 - 16} &= \frac{13}{4} \\
+r^2 - 16 &= \frac{169}{16} \\
+r^2 &= \frac{425}{16} \\
+	&= \frac{25\cdot 17}{16} \\
+\therefore r &= \frac{5\sqrt{17}}{4}
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

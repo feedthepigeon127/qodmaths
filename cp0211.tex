@@ -1,0 +1,32 @@
+\documentclass[varwidth=85mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\usepackage[makeroom]{cancel}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+Evaluate $$\tan\ang{1}\tan\ang{3}\tan\ang{5}\ldots\tan\ang{85}\tan\ang{87}\tan\ang{89}$$
+\begin{choices}
+\choice $\dfrac{1}{2}$
+\choice $\dfrac{\sqrt{2}}{2}$
+\choice $1$%
+\choice $\sqrt{3}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: C}
+\begin{equation*}
+\begin{aligned}
+&\quad\tan\ang{1}\tan\ang{3}\tan\ang{5}\ldots\tan\ang{85}\tan\ang{87}\tan\ang{89} \\
+&= \frac{\sin\ang{1}}{\cos\ang{1}}\cdot\frac{\sin\ang{3}}{\cos\ang{3}}\cdot\frac{\sin\ang{5}}{\cos\ang{5}}\ldots\frac{\sin\ang{85}}{\cos\ang{85}}\cdot\frac{\sin\ang{87}}{\cos\ang{87}}\cdot\frac{\sin\ang{89}}{\cos\ang{89}} \\
+&= \frac{\cancel{\sin\ang{1}}}{\cancel{\sin\ang{89}}}\cdot\frac{\cancel{\sin\ang{3}}}{\cancel{\sin\ang{87}}}\cdot\frac{\cancel{\sin\ang{5}}}{\cancel{\sin\ang{85}}}\ldots\frac{\cancel{\sin\ang{85}}}{\cancel{\sin\ang{5}}}\cdot\frac{\cancel{\sin\ang{87}}}{\cancel{\sin\ang{3}}}\cdot\frac{\cancel{\sin\ang{89}}}{\cancel{\sin\ang{1}}} \\
+&= \frac{\sin\ang{45}}{\cos\ang{45}} \\
+&= 1
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}
+
+

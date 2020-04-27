@@ -1,0 +1,98 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+
+real p = 1; real q = 4; real r = 2;
+real g = 5; real h = 7;
+
+point B = (0, 0);
+point C = (p+q+r, 0);
+point A = (g, h);
+point E = C + (q, 0);
+point D = A + (p+q+r, 0);
+point F = A + (p,0);
+point G = A + (p+q, 0);
+point X = intersectionpoint(line(C,D), line(G,E));
+
+draw(A--B--C--D--cycle);
+draw(C--E);
+draw(F--C);
+draw(G--E);
+
+label("$A$", A, (unit(A-B)+unit(A-D))/2);
+label("$B$", B, (unit(B-A)+unit(B-E))/2);
+label("$C$", C, (unit(C-D)+unit(C-F))/2);
+label("$D$", D, (unit(D-C)+unit(D-A))/2);
+label("$E$", E, (unit(E-B)+unit(E-G))/2);
+label("$F$", F, unit(F-C));
+label("$G$", G, unit(G-E));
+label("$X$", X, (unit(X-G)+unit(X-C))/2);
+
+\end{asy}
+\end{center}
+
+In the figure, $ABCD$ is a parallelogram. $F$ and $G$ are points on $AD$ such that $FCEG$ is a parallelogram. $GE$ and $DC$ intersect at point $X$. If $AF:FG:GD=1:4:2$ and the area of $\bigtriangleup CXE$ is \SI{28}{\centi\meter\squared}, then the area of the trapezium $ABCF$ is 
+
+\begin{choices}
+\choice \SI{63}{\centi\meter\squared}.
+\choice \SI{77}{\centi\meter\squared}.
+\choice \SI{84}{\centi\meter\squared}.%
+\choice \SI{88}{\centi\meter\squared}.
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: C}
+
+$\bigtriangleup CXE\sim \bigtriangleup DXG$, so
+\begin{equation*}
+\begin{aligned}
+\frac{\bigtriangleup DXG}{\bigtriangleup CXE} &= \left(\frac{GD}{EC}\right)^2 \\
+											&= \left(\frac{GD}{FG}\right)^2 \\
+\bigtriangleup DXG &= \bigtriangleup CXE \left(\frac{GD}{FG}\right)^2 \\
+					&= 28\left(\frac{2}{4}\right)^2 \\
+					&= \SI{7}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+$\bigtriangleup DXG\sim \bigtriangleup DCF$, so
+\begin{equation*}
+\begin{aligned}
+\frac{\bigtriangleup DCF}{\bigtriangleup DXG} &= \left(\frac{FD}{GD}\right)^2 \\
+											&= \left(\frac{FG+GD}{GD}\right)^2 \\
+\bigtriangleup DCF &= \bigtriangleup DXG \left(\frac{FG+GD}{GD}\right)^2 \\
+					&= 7\left(\frac{4+2}{2}\right)^2 \\
+					&= \SI{63}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+$\bigtriangleup DCF$ and parallelogram $ABCD$ share the same height, so
+\begin{equation*}
+\begin{aligned}
+\frac{\diamond ABCD}{\bigtriangleup DCF} &= \frac{AD}{\frac{1}{2}FD} \\
+											&= \frac{2AD}{FD} \\
+\diamond ABCD &= \bigtriangleup DCF\frac{2AD}{FD} \\
+			  &= 63\frac{2\times 7}{6} \\
+			  &= \SI{147}{\centi\meter\squared} \\
+\end{aligned}
+\end{equation*}
+
+\begin{equation*}
+\begin{aligned}
+\text{Area of trapezium } ABCF &= \diamond ABCD - \bigtriangleup DCF \\
+						&= 147 - 63 \\
+						&= \SI{84}{\centi\meter\squared} \\  
+\end{aligned}
+\end{equation*}
+
+\end{answer}
+\end{document}

@@ -1,0 +1,131 @@
+\documentclass[border=3pt,varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+
+real r = 1; real alpha = 10; 
+real l1 = 0.5;
+
+point O = (0,0);
+
+circle cle = circle((point)(0,0), r);
+point[] top = intersectionpoints(cle, line((point)(0,l1),(point)(2,l1)));
+point A = top[0];
+point B = top[1];
+point D = intersectionpoints(cle, line((point)(A.x,10), A))[0];
+point C = intersectionpoints(cle, line((point)(B.x,10), B))[0];
+
+point E = intersectionpoint(line(D,B), line(A, A+dir(alpha)));
+point F = intersectionpoints(cle, line(E, A))[1];
+
+draw(cle);
+draw(A--E);
+draw(A--D);
+draw(D--E);
+draw(A--C);
+draw(O--F);
+draw(C--E);
+
+label("$O$", O, labelat(O, new pair[] {A,E}));
+label("$A$", A, labelat(A, new pair[] {O,D,F}));
+//label("$B$", B);
+label("$D$", C, labelat(C, new pair[] {O,E}));
+label("$B$", D, labelat(D, new pair[] {A,O}));
+label("$C$", E, labelat(E, new pair[] {A,O,C}));
+label("$E$", F, labelat(F, new pair[] {O}));
+
+write(distance2d(A,E));
+write(distance2d(C,F));
+write(distance2d(F,E));
+write(sharpdegrees(line(F,O), line(B,O)));
+write(sharpdegrees(line(A,O), line(D,A)));
+write(sharpdegrees(line(F,C), line(E,A)));
+
+\end{asy}
+\end{center}
+
+In the figure, a circle is centred at point $O$ and point $A$, $B$, $D$ and $E$ are lying on the circle. Point $C$ is outside the circle such that $AEC$ and $BOC$ are straight lines. $\bigtriangleup ABO$ is an equilateral triangle. $AD$ is the diameter of the circle. If $\angle COE = \ang{20}$ and $AD=\SI{6}{\centi\meter}$, then the area of $\bigtriangleup ACD$ correct to the nearest \SI{0.1}{\centi\meter\squared} is 
+
+\begin{choices}
+\choice \SI{8.9}{\centi\meter\squared}
+\choice \SI{14.6}{\centi\meter\squared}%
+\choice \SI{15.6}{\centi\meter\squared}
+\choice \SI{20.4}{\centi\meter\squared}
+\end{choices}
+
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: B}
+\begin{center}
+\begin{asy}
+size(65mm);
+import geometry;
+import myasy;
+
+real r = 1; real alpha = 10; 
+real l1 = 0.5;
+
+point O = (0,0);
+
+circle cle = circle((point)(0,0), r);
+point[] top = intersectionpoints(cle, line((point)(0,l1),(point)(2,l1)));
+point A = top[0];
+point B = top[1];
+point D = intersectionpoints(cle, line((point)(A.x,10), A))[0];
+point C = intersectionpoints(cle, line((point)(B.x,10), B))[0];
+
+point E = intersectionpoint(line(D,B), line(A, A+dir(alpha)));
+point F = intersectionpoints(cle, line(E, A))[1];
+
+draw(cle);
+draw(A--E);
+draw(A--D);
+draw(D--E);
+draw(A--C);
+draw(O--F);
+draw(C--E);
+
+draw(B--A, dashed);
+draw(C--F, dashed);
+
+label("$O$", O, labelat(O, new pair[] {A,E}));
+label("$A$", A, labelat(A, new pair[] {O,D,F}));
+label("$F$", B, S);
+label("$D$", C, labelat(C, new pair[] {O,E}));
+label("$B$", D, labelat(D, new pair[] {A,O}));
+label("$C$", E, labelat(E, new pair[] {A,O,C}));
+label("$E$", F, labelat(F, new pair[] {O}));
+
+markrightangle(C, F, A);
+markrightangle(D, A, B);
+
+\end{asy}
+\end{center}
+
+$\angle EAF = \ang{10}$ (angle subtended at the circumference is half the angle subtended at the centre for the same arc)
+
+Consider $\bigtriangleup ABC$,
+$$\angle ACB = \ang{180}-\ang{10}-\ang{90}-\ang{60}=\ang{20}$$
+
+Since $\angle ACB = \angle COE = \ang{20}$, $EC=OE=\SI{3}{\centi\meter}$.
+
+$\angle EAD = \ang{10} + (\ang{90}-\ang{60}) = \ang{40}$, consider $\bigtriangleup AED$, $$AE = 6\cos\ang{40}$$ and $$ED = 6\sin\ang{40}$$
+
+\begin{equation*}
+\begin{aligned}
+\therefore\bigtriangleup ACD &= \frac{1}{2}\times AC\times ED \\
+						   &= \frac{1}{2}\left(6\cos\ang{40}+3\right)\left(6\sin\ang{40}\right) \\
+						   &= \SI{14.648}{\centi\meter\squared}
+\end{aligned}
+\end{equation*}
+\end{answer}
+\end{document}

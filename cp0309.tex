@@ -1,0 +1,47 @@
+\documentclass[varwidth=70mm]{standalone}
+%standard width: 70 mm
+\input{preamble}
+\excludecomment{answer}
+%\includecomment{answer}
+           
+\begin{document}
+
+Which of the following is the greatest?
+
+\begin{choices}
+\choice $689^{2020} - 689^{2019}$
+\choice $2020^{689} - 2019^{689}$
+\choice $777^{2020} - 777^{2019}$%
+\choice $2020^{777} - 2019^{777}$
+\end{choices}
+
+\begin{answer}
+\hrulefill\par
+\textbf{Ans: C}
+
+Note that
+\begin{equation*}
+\begin{aligned}
+689^{2020} - 689^{2019} &= 689^{2019}(689 - 1) \\
+						&= 688\cdot 689^{2019} \\
+						&\approx (6.89\times 10^2)^{2019} \\
+						&\approx 10^{2\times 2019} \\
+						&= 10^{4038} \\ 
+\end{aligned}
+\end{equation*}
+Similarly, $777^{2020} - 777^{2019} \approx 10^{4038}$.
+
+For $2020^{777} - 2019^{777}$,
+\begin{equation*}
+\begin{aligned}
+&\quad 2020^{777} - 2019^{777}  \\
+&= (2.02\times 10^3)^{777} - (2.019\times 10^3)^{777} \\
+&\approx 10^{2331} - 10^{2331}  
+\end{aligned}
+\end{equation*}
+It is the difference between two numbers which have similar number of digits, so it is relatively small. Also, the maximum number of digits is at most \num{\approx 3000}. This is also true for $2020^{689} - 2019^{689}$.
+
+As $777>689$ and $777^{2020} - 777^{2019}$ has at least 4039 digits, $777^{2020} - 777^{2019}$ is the greatest.
+
+\end{answer}
+\end{document}
